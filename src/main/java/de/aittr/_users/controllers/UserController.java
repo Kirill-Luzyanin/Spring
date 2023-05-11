@@ -35,7 +35,7 @@ public class UserController {
     // или так /users
     // или так /users?city=Berlin
     @GetMapping(value = "/users")
-    public String usersList(@RequestParam(name="city", required = false, defaultValue = "all") String city, Model model){
+    public String usersList(int id, @RequestParam(name="city", required = false, defaultValue = "all") String city, Model model){
         List<User> res=users;
         if(!city.equals("all")){
             res=users.stream().filter(c->c.getCity().equals(city)).toList();

@@ -24,24 +24,13 @@ public class OrdersController {
         return "orders";
     }
 
-    /*
-    // или так /users
-    // или так /users?city=Berlin
-    @GetMapping(value = "/orders")
-    public String usersList(@RequestParam(name="city", required = false, defaultValue = "all") String city, Model model){
-        List<User> res=users;
-        if(!city.equals("all")){
-            res=users.stream().filter(c->c.getCity().equals(city)).toList();
-        }
-        model.addAttribute("users",res);
-        //model.addAttribute("users", users);
-        //model.addAttribute("hello", "hello");
-        //model.addAttribute("five", 5);
-        return "orders";
-    }
 
-    // четко только один вариант /users/2
-    @GetMapping(value = "/users/{id}")
+    private UsersDAO usersDAO = new UsersDAO();
+    private List<User> users = usersDAO.getUsers();
+
+
+    // четко только один вариант /users/2/orders
+    @GetMapping(value = "/users/{id}/orders")
     public String userById(@PathVariable int id, Model model){
         List<User> res=new ArrayList<>();
         res.add(users.get(id));
@@ -49,7 +38,5 @@ public class OrdersController {
         model.addAttribute("user_id",id);
         return "user-info";
     }
-
-     */
 
 }
